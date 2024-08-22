@@ -1,37 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const MovieCard = ({ id, title, category, likes, dislikes, onDelete, onReact }) => {
-  const [userReaction, setUserReaction] = useState(null); // 'like', 'dislike', or null
+const MovieCard = ({
+  id,
+  title,
+  category,
+  likes,
+  dislikes,
+  onDelete,
+  onReact,
+}) => {
+  const [userReaction, setUserReaction] = useState(null);
 
   const totalVotes = likes + dislikes;
   const likePercentage = totalVotes === 0 ? 0 : (likes / totalVotes) * 100;
 
   const handleLike = () => {
-    if (userReaction === 'like') {
+    if (userReaction === "like") {
       setUserReaction(null);
-      onReact(id, 'like', false); // Send removal of like
+      onReact(id, "like", false);
     } else {
-      setUserReaction('like');
-      onReact(id, 'like', true); // Send addition of like
-      if (userReaction === 'dislike') {
+      setUserReaction("like");
+      onReact(id, "like", true);
+      if (userReaction === "dislike") {
         setUserReaction(null);
-        onReact(id, 'dislike', false); // Remove dislike
+        onReact(id, "dislike", false);
       }
     }
   };
 
   const handleDislike = () => {
-    if (userReaction === 'dislike') {
-      // User is undoing their dislike
+    if (userReaction === "dislike") {
       setUserReaction(null);
-      onReact(id, 'dislike', false); // Send removal of dislike
+      onReact(id, "dislike", false);
     } else {
-      // User is disliking
-      setUserReaction('dislike');
-      onReact(id, 'dislike', true); // Send addition of dislike
-      if (userReaction === 'like') {
+      setUserReaction("dislike");
+      onReact(id, "dislike", true);
+      if (userReaction === "like") {
         setUserReaction(null);
-        onReact(id, 'like', false); // Remove like
+        onReact(id, "like", false);
       }
     }
   };
@@ -48,19 +54,23 @@ const MovieCard = ({ id, title, category, likes, dislikes, onDelete, onReact }) 
       </div>
       <div className="reaction-buttons">
         <button
-          className={`like-button ${userReaction === 'like' ? 'active' : ''}`}
+          className={`like-button ${userReaction === "like" ? "active" : ""}`}
           onClick={handleLike}
         >
           Like
         </button>
         <button
-          className={`dislike-button ${userReaction === 'dislike' ? 'active' : ''}`}
+          className={`dislike-button ${
+            userReaction === "dislike" ? "active" : ""
+          }`}
           onClick={handleDislike}
         >
           Dislike
         </button>
       </div>
-      <button className="delete-button" onClick={onDelete}>Supprimer</button>
+      <button className="delete-button" onClick={onDelete}>
+        Supprimer
+      </button>
     </div>
   );
 };
