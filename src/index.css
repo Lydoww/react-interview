@@ -1,13 +1,217 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  font-family: "Teko", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: #463f3a;
 }
+
+.title-main {
+  text-align: center;
+  font-size: 3em;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 20px 0;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s ease-in-out;
+}
+
+.title-main:hover {
+  transform: scale(1.05);
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.movie-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: 400px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card h2 {
+  font-size: 1.5em;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.movie-card p {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.gauge {
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.gauge .likes {
+  height: 100%;
+  background-color: #4caf50;
+}
+
+.ratio {
+  font-size: 0.9em;
+  color: #333;
+}
+
+.delete-button {
+  background-color: #e74c3c; /* Rouge vif pour le bouton */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9em;
+  border-radius: 4px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c0392b; /* Rouge légèrement plus foncé au survol */
+}
+
+.reaction-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.like-button,
+.dislike-button {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
+
+.like-button {
+  background-color: #4caf50; /* Vert pour le like */
+  color: white;
+}
+
+.like-button.active {
+  background-color: #388e3c; /* Vert plus foncé quand actif */
+}
+
+.dislike-button {
+  background-color: #f44336; /* Rouge pour le dislike */
+  color: white;
+}
+
+.dislike-button.active {
+  background-color: #d32f2f; /* Rouge plus foncé quand actif */
+}
+
+.delete-button {
+  background-color: #e74c3c; /* Rouge pour le bouton de suppression */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9em;
+  border-radius: 4px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c0392b; /* Rouge légèrement plus foncé au survol */
+}
+
+/* Styles pour la barre de filtre */
+.filter {
+  display: flex;
+  justify-content: center; /* Centre les éléments horizontalement */
+  margin-bottom: 20px;
+}
+
+.filter fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Affiche les boutons radio en ligne */
+  gap: 20px; /* Espacement entre les boutons */
+}
+
+.filter legend {
+  display: none; /* Cacher le legend si non nécessaire */
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+}
+
+.filter-option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.filter-option label {
+  font-size: 1em;
+  cursor: pointer;
+  color: white; /* Couleur du texte en blanc */
+}
+
+.filter-option input[type="radio"]:checked + label {
+  font-weight: bold;
+  color: #00bcd4 !important; /* Cyan clair pour le texte sélectionné */
+}
+
+/* Styles pour la pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .pagination button {
+    background-color: #4caf50; /* Vert pour les boutons */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination button:disabled {
+    background-color: #9e9e9e; /* Gris pour les boutons désactivés */
+    cursor: not-allowed;
+  }
+  
+  .pagination button:hover:not(:disabled) {
+    background-color: #388e3c; /* Vert plus foncé au survol */
+  }
+  
+  .pagination select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+  
